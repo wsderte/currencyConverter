@@ -1,4 +1,11 @@
 
-<div>
-    <h2>{{value.UAH | currency: "UAH"}}</h2>
+<div class="header-wrap">
+    <div class="header-container">
+        <div class="header-logo">Currency changer</div>
+        <!-- <div class="header-value">{{value.UAH | currency: "UAH"}}</div> -->
+        <div class="header-box">
+           <div class="header-currency"> USD  {{currencyUSD.rates.UAH}} </div>
+           <div class="header-currency"> EUR  {{currencyEUR.rates.UAH}}</div>
+        </div>
+    </div>
 </div>
