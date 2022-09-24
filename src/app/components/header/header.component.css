@@ -40,7 +40,7 @@
     font-size: 20px;
 }
 
-@media (max-width: 920px){
+@media (max-width: 990px){
     .header-container{
         justify-content:flex-end;
         
@@ -55,5 +55,19 @@
         top: 10px;
         left: 5px;
         font-size: 22px;
+    }
+}
+
+@media (max-width: 680px){
+    .header-box{
+        gap: 30px;
+        padding-right: 15px;
+    }
+    .header-logo{
+        font-size: 20px;
+    }
+    .header-currency{
+        padding-top: 3px;
+        font-size: 14px;
     }
 }
