@@ -1,0 +1,14 @@
+type ObjectAlias = object;
+
+export interface ITest  extends ObjectAlias  {
+    motd?: {
+        msg: string,
+        url: string,
+      },
+      success?: boolean,
+      base?: string,
+      date?: string,
+      rates?: {
+        [key: string]: number;
+      } 
+} 

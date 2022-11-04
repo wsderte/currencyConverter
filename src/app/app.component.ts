@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IData } from './models/header.interface';
-import {data} from './data/data'
+
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,4 @@ import {data} from './data/data'
 })
 export class AppComponent {
   title = 'value-changer';
-
-  value: IData[] = data
 }
