@@ -1,6 +1,6 @@
 type ObjectAlias = object;
 
-export interface ITest  extends ObjectAlias  {
+export interface IApiData  extends ObjectAlias  {
     motd?: {
         msg: string,
         url: string,

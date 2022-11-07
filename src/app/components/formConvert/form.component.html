@@ -1,0 +1,45 @@
+<form [formGroup]="currencyForm">
+    <div class="converter-wrap">
+        <div class="converter-container">
+            <div class="converter-selection">
+                <div class="converter-block">
+                    <p class="converter-text">You have</p>
+                    <input
+                        type="text"
+                        class="converter-input"
+                        formControlName="leftChanger"
+                        (input)="onSubmitLeft()"
+                    />
+                    <select
+                        class="converter-select"
+                        formControlName="base"
+                        (change)="changeBase()"
+                    >
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="UAH">UAH</option>
+                    </select>
+                </div>
+
+                <div class="converter-block">
+                    <p class="converter-text">You get</p>
+                    <input
+                        type="text"
+                        class="converter-input"
+                        formControlName="rightChanger"
+                        (input)="onSubmitRight()"
+                    />
+                    <select
+                        class="converter-select"
+                        formControlName="secondBase"
+                        (click)="changeSecondBase()"
+                    >
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="UAH">UAH</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

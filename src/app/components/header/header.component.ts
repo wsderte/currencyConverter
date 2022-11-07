@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core"
 import { IData } from "src/app/models/header.interface";
-import { ITest } from "src/app/models/data.interface";
+import { IApiData } from "src/app/models/data.interface";
 import { GetCurrencyService } from "../../services/getCurrency/getCurrency.service"
 
 @Component({
@@ -11,8 +11,8 @@ import { GetCurrencyService } from "../../services/getCurrency/getCurrency.servi
 
 export class HeaderComponent implements OnInit {
 
-    public currencyUSD?:  ITest;
-    public currencyEUR?: ITest;
+    public currencyUSD?:  IApiData;
+    public currencyEUR?: IApiData;
 
     constructor(private API: GetCurrencyService ) {}
 

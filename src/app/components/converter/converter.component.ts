@@ -1,93 +1,88 @@
 // import { NgStyle } from "@angular/common";
-import {Component} from "@angular/core";
-import { ITest } from "src/app/models/data.interface";
-import { GetCurrencyService } from "../../services/getCurrency/getCurrency.service"
+import { Component } from '@angular/core'
+import { IApiData } from 'src/app/models/data.interface'
+import { GetCurrencyService } from '../../services/getCurrency/getCurrency.service'
 
 @Component({
     selector: 'app-converter',
     templateUrl: './converter.component.html',
-    styleUrls: ['./converter.component.css']
+    styleUrls: ['./converter.component.css'],
 })
-
-
-
 export class ConverterComponent {
+    public input: string = '0'
+    public secondInput: string = '0'
 
-    public input: string  = "0";
-    public secondInput: string  = "0";
+    public base: string = 'USD'
+    public secondBase: string = 'USD'
 
-    public base:string = "USD"
-    public secondBase:string = "USD"
-    
-    public leftCurrency?: ITest;
-    public rightCurrency?: ITest;
+    public leftCurrency?: IApiData
+    public rightCurrency?: IApiData
 
-    constructor(private API: GetCurrencyService ) {}
+    constructor(private API: GetCurrencyService) {}
 
-    ngOnInit(): void{
-        this.API.getCurrencyData(this.base).subscribe((data) => 
-            this.leftCurrency = data
+    ngOnInit(): void {
+        this.API.getCurrencyData(this.base).subscribe(
+            (data) => (this.leftCurrency = data)
         )
-        this.API.getCurrencyData(this.secondBase).subscribe((data) => 
-            this.rightCurrency = data
+        this.API.getCurrencyData(this.secondBase).subscribe(
+            (data) => (this.rightCurrency = data)
         )
     }
 
-    changeBase(arg: string): void{
-        this.base = arg;
+    changeBase(arg: string): void {
+        this.base = arg
         this.API.getCurrencyData(arg).subscribe((data) => {
-            this.leftCurrency = data;
-            this.changeInput(this.input);
+            this.leftCurrency = data
+            this.changeInput(this.input)
         })
     }
 
-    changeSecondBase(arg: string): void{
-        this.secondBase = arg;
-        this.API.getCurrencyData(arg).subscribe((data) =>{
-            this.rightCurrency = data;
-            this.changeSecondInput(this.secondInput);
+    changeSecondBase(arg: string): void {
+        this.secondBase = arg
+        this.API.getCurrencyData(arg).subscribe((data) => {
+            this.rightCurrency = data
+            this.changeSecondInput(this.secondInput)
         })
     }
 
-    changeInput(arg: string): void{
-        let result:number;
-        this.input = arg;  
-        const secondInput:any = document.getElementById("input2");
-        let num = 0;
+    changeInput(arg: string): void {
+        let result: number
+        this.input = arg
+        const secondInput: any = document.getElementById('input2')
+        let num = 0
 
-        this.leftCurrency?.rates?.[this.secondBase] 
-            ? num = this.leftCurrency?.rates?.[this.secondBase] : null;
+        this.leftCurrency?.rates?.[this.secondBase]
+            ? (num = this.leftCurrency?.rates?.[this.secondBase])
+            : null
 
-        
-        if(this.base !== this.secondBase){
-            result = +arg * num//this.leftCurrency?.rates?.[this.secondBase];
-        }else{
+        if (this.base !== this.secondBase) {
+            result = +arg * num //this.leftCurrency?.rates?.[this.secondBase];
+        } else {
             result = +arg
         }
 
         // console.log(typeof this.leftCurrency.rates[this.secondBase])
-        secondInput.value = result;
-        if(result) this.secondInput = result + "";
+        secondInput.value = result
+        if (result) this.secondInput = result + ''
     }
 
-    changeSecondInput(arg: string): void{
-        let result:number;
-        this.secondInput = arg;
-        const input1:  any = document.getElementById("input1");
+    changeSecondInput(arg: string): void {
+        let result: number
+        this.secondInput = arg
+        const input1: any = document.getElementById('input1')
 
-        let num = 0;
-        this.rightCurrency?.rates?.[this.base] 
-            ? num = this.rightCurrency?.rates?.[this.base] : null;
+        let num = 0
+        this.rightCurrency?.rates?.[this.base]
+            ? (num = this.rightCurrency?.rates?.[this.base])
+            : null
 
-
-        if(this.base !== this.secondBase){
-            result = +arg * num// this.rightCurrency.rates[this.base] ;
-        }else{
+        if (this.base !== this.secondBase) {
+            result = +arg * num // this.rightCurrency.rates[this.base] ;
+        } else {
             result = +arg
         }
 
         input1.value = result
-        if(result) this.input = result + "";
+        if (result) this.input = result + ''
     }
-
 }

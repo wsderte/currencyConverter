@@ -1,29 +1,49 @@
-
 <div class="converter-wrap">
     <div class="converter-container">
         <div class="converter-selection">
             <div class="converter-block">
                 <!-- <input type="text" id="input4">
                 <button (click)="setInputValue()">Set input</button> -->
-                <p class="converter-text"> You have </p>
-                <input  class="converter-input" id="input1" type="text" #c3  (input)="changeInput(c3.value)">
-                <select class="converter-select" class="converter-select" #c1 name=""  (change)="changeBase(c1.value)">
+                <p class="converter-text">You have</p>
+
+                <input
+                    class="converter-input"
+                    id="input1"
+                    type="text"
+                    #c3
+                    (input)="changeInput(c3.value)"
+                />
+                <select
+                    class="converter-select"
+                    #c1
+                    name=""
+                    (change)="changeBase(c1.value)"
+                >
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                     <option value="UAH">UAH</option>
                 </select>
             </div>
 
-            <div  class="converter-block">
-                <p class="converter-text"> You get </p>
-                <input class="converter-input" id="input2" #c4  type="text" (input)="changeSecondInput(c4.value)">
-                <select class="converter-select" #c2  (click)="changeSecondBase(c2.value)">
+            <div class="converter-block">
+                <p class="converter-text">You get</p>
+                <input
+                    class="converter-input"
+                    id="input2"
+                    #c4
+                    type="text"
+                    (input)="changeSecondInput(c4.value)"
+                />
+                <select
+                    class="converter-select"
+                    #c2
+                    (click)="changeSecondBase(c2.value)"
+                >
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
                     <option value="UAH">UAH</option>
                 </select>
             </div>
-
         </div>
     </div>
 </div>
