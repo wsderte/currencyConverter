@@ -36,28 +36,26 @@ export class FormComponent {
     }
 
     changeBase(): void {
-        // this.base = arg;
         if (this.currencyForm.value.base)
             this.API.getCurrencyData(this.currencyForm.value.base).subscribe(
                 (data) => {
                     this.leftCurrency = data
-                    this.onSubmitLeft()
+                    this.onInputLeft()
                 }
             )
     }
 
     changeSecondBase(): void {
-        // this.secondBase = arg;
         if (this.currencyForm.value.secondBase)
             this.API.getCurrencyData(
                 this.currencyForm.value.secondBase
             ).subscribe((data) => {
                 this.rightCurrency = data
-                this.onSubmitRight()
+                this.onInputRight()
             })
     }
 
-    onSubmitLeft() {
+    onInputLeft() {
         let result: number = 0
         let multiplier: number = 0
         if (this.currencyForm.value.secondBase)
@@ -84,7 +82,7 @@ export class FormComponent {
         })
     }
 
-    onSubmitRight(): void {
+    onInputRight(): void {
         let result: number = 0
         let multiplier: number = 0
 
