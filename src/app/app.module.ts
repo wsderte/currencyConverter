@@ -8,6 +8,7 @@ import { GetCurrencyService } from './services/getCurrency/getCurrency.service';
 import { ConverterComponent } from './components/converter/converter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/formConvert/form.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 
@@ -19,10 +20,11 @@ import { FormComponent } from './components/formConvert/form.component';
     FormComponent
   ],
   imports: [
+    // MatSlideToggleModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [GetCurrencyService],
   bootstrap: [AppComponent]

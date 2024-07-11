@@ -1,45 +1,44 @@
-<form [formGroup]="currencyForm">
-    <div class="converter-wrap">
-        <div class="converter-container">
-            <div class="converter-selection">
-                <div class="converter-block">
-                    <p class="converter-text">You have</p>
-                    <input
-                        type="text"
-                        class="converter-input"
-                        formControlName="leftChanger"
-                        (input)="onInputLeft()"
-                    />
-                    <select
-                        class="converter-select"
-                        formControlName="base"
-                        (change)="changeBase()"
-                    >
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="UAH">UAH</option>
-                    </select>
+<div class="modal" *ngIf="currentModal === 'modal1'">
+    <div class="modal-content">
+        <div class="modal-box">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <div class="vertical-content">
+                <div class="text-content">
+                    <span class="title">{{"Как вы хотите получить заказ?"}}</span>
+                    <div>
+                        <div class="text">{{"Доставим до Вас или заберите у нас."}}</div>
+                        <div class="text">{{"Зарегистрируйтесь у нас на сайте и мы запомним Ваш адрес доставки, для Вашего удобства."}}</div>
+                    </div>    
                 </div>
 
-                <div class="converter-block">
-                    <p class="converter-text">You get</p>
-                    <input
-                        type="text"
-                        class="converter-input"
-                        formControlName="rightChanger"
-                        (input)="onInputRight()"
-                    />
-                    <select
-                        class="converter-select"
-                        formControlName="secondBase"
-                        (click)="changeSecondBase()"
-                    >
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="UAH">UAH</option>
-                    </select>
+                <button (click)="showModal('modal2')" class="button delivery-button">{{"Доставка"}} </button>
+                <button (click)="showModal('modal2')" class="button">{{"Самовывоз"}}</button>
+
+                <div class="center">
+                    <span class="link text">{{"Войти"}}</span> 
+                    <span class="text"> {{" в свой аккаунт"}} </span> 
                 </div>
             </div>
         </div>
+
+      <ng-content></ng-content>
     </div>
-</form>
+</div>
+
+<div class="modal" *ngIf="currentModal === 'modal2'">
+    <div class="modal-content">
+        <div class="modal-box">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <div class="vertical-content">
+
+                <button (click)="showModal('modal1')" class="button delivery-button">{{"Доставка"}} </button>
+                <button (click)="showModal('modal1')" class="button">{{"Самовывоз"}}</button>
+
+            </div>
+        </div>
+        <!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
+
+      <ng-content></ng-content>
+    </div>
+</div>
+
