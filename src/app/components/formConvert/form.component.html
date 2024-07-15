@@ -1,7 +1,7 @@
 <div class="modal" *ngIf="currentModal === 'modal1'">
     <div class="modal-content">
         <div class="modal-box">
-            <span class="close" (click)="closeModal()">&times;</span>
+            <span class="close" (click)="showModal('')">&times;</span>
             <div class="vertical-content">
                 <div class="text-content">
                     <span class="title">{{"Как вы хотите получить заказ?"}}</span>
@@ -11,8 +11,8 @@
                     </div>    
                 </div>
 
-                <button (click)="showModal('modal2')" class="button delivery-button">{{"Доставка"}} </button>
-                <button (click)="showModal('modal2')" class="button">{{"Самовывоз"}}</button>
+                <button mat-flat-button extended (click)="showModal('modal2')" class="button delivery-button">{{"Доставка"}} </button>
+                <button mat-flat-button extended (click)="showModal('modal2')" class="button">{{"Самовывоз"}}</button>
 
                 <div class="center">
                     <span class="link text">{{"Войти"}}</span> 
@@ -26,19 +26,136 @@
 </div>
 
 <div class="modal" *ngIf="currentModal === 'modal2'">
-    <div class="modal-content">
+    <div class="modal-content2">
         <div class="modal-box">
-            <span class="close" (click)="closeModal()">&times;</span>
+            <div class="icon-box">
+                <mat-icon class="back" (click)="showModal('modal1')" aria-hidden="false" aria-label="filter icon">arrow_back_ios</mat-icon>
+                <span class="close" (click)="showModal('')">&times;</span>
+            </div>
+
+            <div class="address-box">
+                <h1>Новый заказ</h1>
+
+                <div class="btn-container">
+                    <label class="switch btn-color-mode-switch">
+                          <input 
+                           [(ngModel)]="isPickup" 
+                           (change)="onToggleChange()"
+                           type="checkbox" 
+                           name="color_mode" 
+                           id="color_mode" 
+                           value="1"
+                           >
+                          <label for="color_mode" data-on="Самовывоз" data-off="Доставка" class="btn-color-mode-switch-inner"></label>
+                      </label>
+                </div>
+
+                <div class="center">
+                    <span class="link text">{{"Войти"}}</span> 
+                    <span class="text"> {{" в свой аккаунт и отобразить мои адреса доставки"}} </span> 
+                </div>
+                <mat-icon class="back" (click)="showModal('modal1')" aria-hidden="false" aria-label="filter icon">location_on</mat-icon>
+                <span> {{"  Определить местоположение"}} </span>
+
+                <form  [formGroup]="options">
+                  <mat-form-field >
+                    <input matInput placeholder="Simple placeholder" />
+                    
+                  </mat-form-field>
+                  <!-- <div class="example-form-fields">
+                    <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input matInput placeholder="Simple placeholder" />
+                    </mat-form-field>
+                  </div> -->
+                </form>
+                <div class="example-container">
+                    <!-- <mat-form-field hintLabel="Max 10 characters">
+                      <mat-label>Enter some input</mat-label>
+                      <input matInput #input maxlength="10" placeholder="Ex. Nougat"  />
+                      <!-- <mat-hint align="end"></mat-hint> -->
+                    <!-- </mat-form-field> --> -->
+                  
+                   
+                    <!-- <mat-form-field>
+                      <input matInput>
+                      <!-- <mat-label>Select me</mat-label>
+                      <mat-select>
+                        <mat-option value="option">Option</mat-option>
+                      </mat-select>
+                      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+                    <!-- </mat-form-field> --> -->
+
+                </div>
+                  
+            </div>
+
             <div class="vertical-content">
-
-                <button (click)="showModal('modal1')" class="button delivery-button">{{"Доставка"}} </button>
-                <button (click)="showModal('modal1')" class="button">{{"Самовывоз"}}</button>
-
+                <button mat-flat-button extended (click)="showModal('modal3')" class="button delivery-button">{{"Добавить"}} </button>
+                <button mat-flat-button extended (click)="showModal('modal3')" class="button">{{"Очистить"}}</button>
             </div>
         </div>
-        <!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
-
-      <ng-content></ng-content>
     </div>
 </div>
 
+
+
+<!-- 
+<div mat-dialog-content class="new-order-container" *ngIf="currentModal === 'modal3'">
+  <div class="modal-content2">
+    <mat-toolbar color="primary">
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span>Новый заказ</span>
+    </mat-toolbar>
+    <mat-tab-group>
+      <mat-tab label="Доставка"></mat-tab>
+      <mat-tab label="Самовывоз"></mat-tab>
+    </mat-tab-group>
+    <div class="login-link">
+      <a href="#">Войти</a> в свой аккаунт и отобразить мои адреса доставки
+    </div>
+    <button mat-button>
+      <mat-icon>location_on</mat-icon> Определить местоположение
+    </button>
+    <form>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Улица</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <div class="address-fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Дом</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Корпус</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div class="optional-fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Подъезд</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Квартира</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Домофон</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Этаж</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div class="action-buttons">
+        <button mat-raised-button color="primary">Добавить</button>
+        <button mat-button color="accent">Очистить</button>
+      </div>
+    </form>
+    </div>
+  </div>
+ -->

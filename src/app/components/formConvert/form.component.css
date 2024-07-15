@@ -20,10 +20,25 @@
     width: 426px;
     height: 431px;
   }
+
+  .modal-content2 {
+    background-color: #FFFFFF;
+    margin: auto;
+    border-radius: 38px;
+    border: 1px solid #888;
+    width: 469px;
+    height: 627px;
+  }
+
+
   .modal-box{
     display: flex;
     flex-direction: column;
     padding: 32px;
+  }
+
+  .icon-box{
+    display: flex;
   }
 
   .vertical-content{
@@ -40,17 +55,26 @@
   }
 
   .close {
-    /* color: #aaa; */
     margin-left: auto;
-    float: right;
     font-size: 24px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
     font-weight: bold;
+    cursor: pointer;
   }
   
-  .close:hover,
+  /* .close:hover,
   .close:focus {
     color: black;
     text-decoration: none;
+    cursor: pointer;
+  } */
+
+  .back {
+    color: #8252F4;
+    width: 12px;
+    font-weight: 800;
     cursor: pointer;
   }
 
@@ -77,6 +101,7 @@
     color: #8252F4;
     border: 2px solid #8252F4;
     cursor: pointer;
+    width: 100%;
   }
 
   .button:hover {
@@ -92,3 +117,183 @@
   .center{ 
     text-align: center;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* div.btn-container{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+} */
+
+/* label {
+    font-size: 16px;
+    color: #424242;
+    font-weight: 500;
+} */
+
+/* .btn-color-mode-switch{
+    display: inline-block;
+    margin: 0px;
+    position: relative;
+} */
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner{
+    margin: 0px;
+    width: 400px;
+    height: 50px;
+    background: #E0E0E0; 
+    border-radius: 26px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    /* box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset; */
+    display: block;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:before{
+    content: attr(data-on);
+    position: absolute;
+    font-size: 16px;
+    font-weight: 500;
+    top: 15px;
+    right: 60px;
+
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:after{
+    content: attr(data-off);
+    font-size: 16px;
+    width: 200px;
+    height: 30px;
+    border-radius: 28px;
+    line-height: 1.5;
+
+    background: #8252F4;
+    color:white;
+
+    position: absolute;
+    text-align: center;
+    transition: all 0.3s ease;
+    padding: 10px;
+
+}
+
+.btn-color-mode-switch > .alert{
+    display: none;
+    border: none;
+    color: #fff;
+}
+
+.btn-color-mode-switch input[type="checkbox"]{
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    margin: 0px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after{
+    content: attr(data-on);
+    right: 0px;
+    font-size: 16px;
+    line-height: 1.7;
+    /* background: #3c3c3c; */
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before{
+    content: attr(data-off);
+    /* right: auto; */
+    left: 60px;
+    font-size: 16px;
+}
+
+
+.btn-color-mode-switch input[type="checkbox"]:checked ~ .alert{
+    display: block;
+}
+
+
+
+
+
+
+
+
+.mat-form-field-underline{
+  background: black;
+}
+
+
+
+
+
+
+
+
+
+/* 
+.new-order-container {
+  padding: 16px;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-link {
+  margin: 16px 0;
+  a {
+    color: #3f51b5;
+    text-decoration: none;
+  }
+}
+
+.address-fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.optional-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.full-width {
+  width: 100%;
+} */
+
+
+
+
+
