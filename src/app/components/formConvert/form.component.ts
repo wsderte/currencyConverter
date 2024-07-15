@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core'
 import { FormBuilder, FormControl } from '@angular/forms';
 import {FloatLabelType} from '@angular/material';
-// import {toSignal} from '@angular/core/rxjs-interop';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-form',
@@ -19,7 +19,7 @@ export class FormComponent {
       hideRequired: this.hideRequiredControl,
       floatLabel: this.floatLabelControl,
     });
-    // protected readonly hideRequired = toSignal(this.hideRequiredControl.valueChanges);
+    protected readonly hideRequired = toSignal(this.hideRequiredControl.valueChanges);
     // protected readonly floatLabel = toSignal(
     //   this.floatLabelControl.valueChanges.pipe(map(v => v || 'auto')),
     //   {initialValue: 'auto'},

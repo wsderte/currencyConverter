@@ -9,7 +9,7 @@ import { ConverterComponent } from './components/converter/converter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from './components/formConvert/form.component';
 import {MatButtonModule} from '@angular/material/button'; 
-import {MatIconModule} from '@angular/material/icon';
+// import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatInputModule} from '@angular/material/input';
@@ -18,8 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material';
 
-@NgModule({ declarations: [
+@NgModule({ 
+    declarations: [
         AppComponent,
         HeaderComponent,
         ConverterComponent,
@@ -49,5 +51,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         BrowserAnimationsModule,
         MatTabsModule,
         MatDialogModule,
-        MatToolbarModule], providers: [GetCurrencyService, provideHttpClient(withInterceptorsFromDi())] })
+        MatToolbarModule
+    ],
+    providers: [GetCurrencyService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
