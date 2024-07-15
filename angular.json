@@ -64,11 +64,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "value-changer:build:production",
-              "proxyConfig": "src/proxy.config.json"
+              "proxyConfig": "src/proxy.config.json",
+              "buildTarget": "value-changer:build:production"
             },
             "development": {
-              "browserTarget": "value-changer:build:development"
+              "buildTarget": "value-changer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "value-changer:build"
+            "buildTarget": "value-changer:build"
           }
         },
         "test": {
