@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material';
+// import { MatIconModule } from '@angular/material';
 
 @NgModule({ 
     declarations: [
@@ -28,7 +28,7 @@ import { MatIconModule } from '@angular/material';
         FormComponent,
     ],
     exports: [
-        MatIconModule,
+        // MatIconModule,
         MatButtonModule,
         MatSlideToggleModule,
         MatFormFieldModule,
@@ -39,11 +39,13 @@ import { MatIconModule } from '@angular/material';
         MatDialogModule,
         MatToolbarModule,
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent], 
+    imports: [
+        BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         MatButtonModule,
-        MatIconModule,
+        // MatIconModule,
         MatSlideToggleModule,
         MatFormFieldModule,
         MatSelectModule,
