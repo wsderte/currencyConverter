@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .modal {
     display: flex;
     justify-content: center;
@@ -41,11 +43,21 @@
     display: flex;
   }
 
-  .vertical-content{
+  .vertical-content {
     display: flex;
     flex-direction: column;
     gap: 32px;
     padding-top: 44px;
+  }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-padding-40 {
+    padding-top: 40px;
   }
 
   .text-content{
@@ -73,7 +85,7 @@
 
   .back {
     color: #8252F4;
-    width: 12px;
+    width: 24px;
     font-weight: 800;
     cursor: pointer;
   }
@@ -130,29 +142,6 @@
 
 
 
-
-
-
-
-
-
-/* div.btn-container{
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-} */
-
-/* label {
-    font-size: 16px;
-    color: #424242;
-    font-weight: 500;
-} */
-
-/* .btn-color-mode-switch{
-    display: inline-block;
-    margin: 0px;
-    position: relative;
-} */
 
 .btn-color-mode-switch > label.btn-color-mode-switch-inner{
     margin: 0px;
@@ -238,62 +227,125 @@
 
 
 
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
 
-.mat-form-field-underline{
-  background: black;
+.example-container mat-form-field {
+  width: 220px;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 12px 0;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+.form-fields {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 20px;
+  gap:8px;
+}
+
+
+.form-login-box{
+  padding: 10px 0;
+}
+
+mdc-text-field--filled{
+  padding: 0px;
+}
+
+mat-form-field{
+  height: 70px;
+  /* padding: 0px; */
 }
 
 
 
+.mat-mdc-form-field{
+  font-size: 14px;
+}
+
+.form-error {
+  font-size: 10px;
+}
+
+
+.form-input-street {
+  min-width: 196px;
+}
+
+.form-hint {
+  font-size: 10px;
+  padding: 0px 0px 0px 0px !important;
+  /* color: red; */
+}
 
 
 
+@media screen and (max-width: 768px) {
+  .modal-content {
+    border: none;
+    width: 426px;
+    height: 431px;
+  }
+
+  .mat-bottom-sheet-container {
+    min-width: 384px;
+    max-width: calc(100vw - 128px) !important;
+    margin-top: 80px;
+  }
+
+  mat-bottom-sheet-container {
+    min-width: 384px;
+    max-width: calc(100vw - 128px) !important;
+    margin-top: 80px;
+  }
+   
+  .vertical-content {
+    padding-top: 10px;
+  }
+
+  .modal {
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+}
 
 
+
+.form-modal-content {
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* width: 50%; */
+  /* left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+  border-radius: 0; */
+  
+  position: fixed;
+  bottom: 0;
+
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  /* border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px; */
+  border-radius: 0;
+}
 
 /* 
-.new-order-container {
-  padding: 16px;
-}
-
-mat-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.login-link {
-  margin: 16px 0;
-  a {
-    color: #3f51b5;
-    text-decoration: none;
-  }
-}
-
-.address-fields {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.optional-fields {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-}
-
-.full-width {
-  width: 100%;
+.form-modal-content.show {
+  transform: translateY(0);
 } */
-
-
-
-
-

@@ -7,9 +7,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { GetCurrencyService } from './services/getCurrency/getCurrency.service';
 import { ConverterComponent } from './components/converter/converter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormComponent } from './components/formConvert/form.component';
+import { Block1Component, BottomSheetOverviewSheet, FormComponent } from './components/formConvert/form.component';
 import {MatButtonModule} from '@angular/material/button'; 
-// import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatInputModule} from '@angular/material/input';
@@ -18,7 +17,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-// import { MatIconModule } from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
+import {
+    MatBottomSheetModule,
+  } from '@angular/material/bottom-sheet';
+  import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({ 
     declarations: [
@@ -26,9 +30,12 @@ import { MatTabsModule } from '@angular/material/tabs';
         HeaderComponent,
         ConverterComponent,
         FormComponent,
+        BottomSheetOverviewSheet,
+        Block1Component
+        
     ],
     exports: [
-        // MatIconModule,
+        MatIconModule,
         MatButtonModule,
         MatSlideToggleModule,
         MatFormFieldModule,
@@ -38,6 +45,10 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatTabsModule,
         MatDialogModule,
         MatToolbarModule,
+        // MatBottomSheet,
+        MatBottomSheetModule,
+        // MatBottomSheetRef,
+        MatListModule
     ],
     bootstrap: [AppComponent], 
     imports: [
@@ -45,7 +56,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         FormsModule,
         ReactiveFormsModule,
         MatButtonModule,
-        // MatIconModule,
+        MatIconModule,
         MatSlideToggleModule,
         MatFormFieldModule,
         MatSelectModule,
@@ -53,7 +64,11 @@ import { MatTabsModule } from '@angular/material/tabs';
         BrowserAnimationsModule,
         MatTabsModule,
         MatDialogModule,
-        MatToolbarModule
+        MatToolbarModule,
+        // MatBottomSheet,
+        MatBottomSheetModule,
+        // MatBottomSheetRef,
+        MatListModule,
     ],
     providers: [GetCurrencyService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

@@ -1,31 +1,11 @@
+<button mat-flat-button extended (click)="showModal('modal1')" class="button">{{"Заказ"}}</button>
+              
 <div class="modal" *ngIf="currentModal === 'modal1'">
-    <div class="modal-content">
-        <div class="modal-box">
-            <span class="close" (click)="showModal('')">&times;</span>
-            <div class="vertical-content">
-                <div class="text-content">
-                    <span class="title">{{"Как вы хотите получить заказ?"}}</span>
-                    <div>
-                        <div class="text">{{"Доставим до Вас или заберите у нас."}}</div>
-                        <div class="text">{{"Зарегистрируйтесь у нас на сайте и мы запомним Ваш адрес доставки, для Вашего удобства."}}</div>
-                    </div>    
-                </div>
-
-                <button mat-flat-button extended (click)="showModal('modal2')" class="button delivery-button">{{"Доставка"}} </button>
-                <button mat-flat-button extended (click)="showModal('modal2')" class="button">{{"Самовывоз"}}</button>
-
-                <div class="center">
-                    <span class="link text">{{"Войти"}}</span> 
-                    <span class="text"> {{" в свой аккаунт"}} </span> 
-                </div>
-            </div>
-        </div>
-
-      <ng-content></ng-content>
-    </div>
+    <app-block1 [currentModal]="currentModal" [isDesktop]="isDesktop" [showModal]="showModal"></app-block1>
 </div>
 
 <div class="modal" *ngIf="currentModal === 'modal2'">
+@if (isDesktop){
     <div class="modal-content2">
         <div class="modal-box">
             <div class="icon-box">
@@ -50,7 +30,7 @@
                       </label>
                 </div>
 
-                <div class="center">
+                <div class="form-login-box">
                     <span class="link text">{{"Войти"}}</span> 
                     <span class="text"> {{" в свой аккаунт и отобразить мои адреса доставки"}} </span> 
                 </div>
@@ -58,104 +38,279 @@
                 <span> {{"  Определить местоположение"}} </span>
 
                 <form  [formGroup]="options">
-                  <mat-form-field >
-                    <input matInput placeholder="Simple placeholder" />
-                    
-                  </mat-form-field>
-                  <!-- <div class="example-form-fields">
-                    <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
-                      <input matInput placeholder="Simple placeholder" />
+                  <div class="form-fields">
+                    <mat-form-field class="form-input-street" [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input 
+                        type="text" 
+                        class="form-input" 
+                        matInput 
+                        placeholder="Улица*"
+                        [formControl]="emailFormControl"
+                        [errorStateMatcher]="matcher" 
+                        required 
+                      />
+                      <mat-icon class="back" matSuffix>keyboard_arrow_down</mat-icon>
+                      <mat-hint class="form-hint" align="start"><strong>*Обязятельное поле для ввода</strong> </mat-hint>
+                      @if (emailFormControl.hasError('required')) {
+                        <mat-error class="form-error" ><strong>*Обязятельное поле для ввода</strong></mat-error>
+                      }
+                      
                     </mat-form-field>
-                  </div> -->
+
+                    <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input 
+                        type="text" 
+                        class="form-input" 
+                        matInput 
+                        placeholder="Дом*"
+                        [formControl]="emailFormControl"
+                        [errorStateMatcher]="matcher" 
+                        required 
+                      />
+                      <!-- <mat-hint align="start"><strong>*Обязятельное поле для ввода</strong> </mat-hint> -->
+                      @if (emailFormControl.hasError('required')) {
+                        <mat-error class=" form-error"> <strong>*Обязятельное поле для ввода</strong></mat-error>
+                      }
+                    </mat-form-field>
+              
+                    <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input 
+                        type="text" 
+                        class="form-input" 
+                        matInput 
+                        placeholder="Корпус"
+                        [formControl]="emailFormControl"
+                        [errorStateMatcher]="matcher" 
+                        required 
+                      />
+                      <!-- <mat-hint align="start"><strong>*Обязятельное поле для ввода</strong> </mat-hint> -->
+                      @if (emailFormControl.hasError('required')) {
+                        <mat-error class=" form-error"><strong>*Обязятельное поле для ввода</strong></mat-error>
+                      }
+                    </mat-form-field>
+
+                  </div>
+
+
+                  <div class="form-fields">
+                    <mat-form-field  [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input 
+                        type="text" 
+                        class="form-input" 
+                        matInput 
+                        placeholder="Подьезд"
+                        [formControl]="emailFormControl"
+                        [errorStateMatcher]="matcher" 
+                        required 
+                      />
+                      
+                    </mat-form-field>
+
+                    <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input 
+                        type="text" 
+                        class="form-input" 
+                        matInput 
+                        placeholder="Квартира"
+                        [formControl]="emailFormControl"
+                        [errorStateMatcher]="matcher" 
+                        required 
+                      />
+ 
+                    </mat-form-field>
+              
+                    <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input 
+                        type="text" 
+                        class="form-input" 
+                        matInput 
+                        placeholder="Домофон"
+                        [formControl]="emailFormControl"
+                        [errorStateMatcher]="matcher" 
+                        required 
+                      />
+     
+                    </mat-form-field>
+
+                    <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                      <input 
+                        type="text" 
+                        class="form-input" 
+                        matInput 
+                        placeholder="Этаж"
+                        [formControl]="emailFormControl"
+                        [errorStateMatcher]="matcher" 
+                        required 
+                      />
+                    </mat-form-field>
+
+                  </div>
+                  <!-- <p>Entered value: {{options.valueChanges | async | json}}</p> -->
                 </form>
-                <div class="example-container">
-                    <!-- <mat-form-field hintLabel="Max 10 characters">
-                      <mat-label>Enter some input</mat-label>
-                      <input matInput #input maxlength="10" placeholder="Ex. Nougat"  />
-                      <!-- <mat-hint align="end"></mat-hint> -->
-                    <!-- </mat-form-field> --> -->
-                  
-                   
-                    <!-- <mat-form-field>
-                      <input matInput>
-                      <!-- <mat-label>Select me</mat-label>
-                      <mat-select>
-                        <mat-option value="option">Option</mat-option>
-                      </mat-select>
-                      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
-                    <!-- </mat-form-field> --> -->
-
-                </div>
-                  
             </div>
-
-            <div class="vertical-content">
+            
+            <div class="buttons-container form-padding-40">
                 <button mat-flat-button extended (click)="showModal('modal3')" class="button delivery-button">{{"Добавить"}} </button>
                 <button mat-flat-button extended (click)="showModal('modal3')" class="button">{{"Очистить"}}</button>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+} @else {
+  <div class="modal-content2 form-modal-content" >
+    <div class="modal-box">
+        <div class="icon-box">
+            <mat-icon class="back" (click)="showModal('modal1')" aria-hidden="false" aria-label="filter icon">arrow_back_ios</mat-icon>
+            <span class="close" (click)="showModal('')">&times;</span>
+        </div>
+
+        <div class="address-box">
+            <h1>Новый заказ</h1>
+
+            <div class="btn-container">
+                <label class="switch btn-color-mode-switch">
+                      <input 
+                       [(ngModel)]="isPickup" 
+                       (change)="onToggleChange()"
+                       type="checkbox" 
+                       name="color_mode" 
+                       id="color_mode" 
+                       value="1"
+                       >
+                      <label for="color_mode" data-on="Самовывоз" data-off="Доставка" class="btn-color-mode-switch-inner"></label>
+                  </label>
+            </div>
+
+            <div class="form-login-box">
+                <span class="link text">{{"Войти"}}</span> 
+                <span class="text"> {{" в свой аккаунт и отобразить мои адреса доставки"}} </span> 
+            </div>
+            <mat-icon class="back" (click)="showModal('modal1')" aria-hidden="false" aria-label="filter icon">location_on</mat-icon>
+            <span> {{"  Определить местоположение"}} </span>
+
+            <form  [formGroup]="options">
+              <div class="form-fields">
+                <mat-form-field class="form-input-street" [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                  <input 
+                    type="text" 
+                    class="form-input" 
+                    matInput 
+                    placeholder="Улица*"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher" 
+                    required 
+                  />
+                  <mat-icon class="back" matSuffix>keyboard_arrow_down</mat-icon>
+                  <mat-hint class="form-hint" align="start"><strong>*Обязятельное поле для ввода</strong> </mat-hint>
+                  @if (emailFormControl.hasError('required')) {
+                    <mat-error class="form-error" ><strong>*Обязятельное поле для ввода</strong></mat-error>
+                  }
+                  
+                </mat-form-field>
+
+                <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                  <input 
+                    type="text" 
+                    class="form-input" 
+                    matInput 
+                    placeholder="Дом*"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher" 
+                    required 
+                  />
+                  <!-- <mat-hint align="start"><strong>*Обязятельное поле для ввода</strong> </mat-hint> -->
+                  @if (emailFormControl.hasError('required')) {
+                    <mat-error class=" form-error"> <strong>*Обязятельное поле для ввода</strong></mat-error>
+                  }
+                </mat-form-field>
+          
+                <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                  <input 
+                    type="text" 
+                    class="form-input" 
+                    matInput 
+                    placeholder="Корпус"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher" 
+                    required 
+                  />
+                  <!-- <mat-hint align="start"><strong>*Обязятельное поле для ввода</strong> </mat-hint> -->
+                  @if (emailFormControl.hasError('required')) {
+                    <mat-error class=" form-error"><strong>*Обязятельное поле для ввода</strong></mat-error>
+                  }
+                </mat-form-field>
+
+              </div>
+
+
+              <div class="form-fields">
+                <mat-form-field  [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                  <input 
+                    type="text" 
+                    class="form-input" 
+                    matInput 
+                    placeholder="Подьезд"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher" 
+                    required 
+                  />
+                  
+                </mat-form-field>
+
+                <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                  <input 
+                    type="text" 
+                    class="form-input" 
+                    matInput 
+                    placeholder="Квартира"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher" 
+                    required 
+                  />
+
+                </mat-form-field>
+          
+                <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                  <input 
+                    type="text" 
+                    class="form-input" 
+                    matInput 
+                    placeholder="Домофон"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher" 
+                    required 
+                  />
+ 
+                </mat-form-field>
+
+                <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+                  <input 
+                    type="text" 
+                    class="form-input" 
+                    matInput 
+                    placeholder="Этаж"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher" 
+                    required 
+                  />
+                </mat-form-field>
+
+              </div>
+              <!-- <p>Entered value: {{options.valueChanges | async | json}}</p> -->
+            </form>
+        </div>
+        
+        <div class="buttons-container form-padding-40">
+            <button mat-flat-button extended (click)="showModal('modal3')" class="button delivery-button">{{"Добавить"}} </button>
+            <button mat-flat-button extended (click)="showModal('modal3')" class="button">{{"Очистить"}}</button>
+        </div>
+    </div>
 </div>
-
-
-
-<!-- 
-<div mat-dialog-content class="new-order-container" *ngIf="currentModal === 'modal3'">
-  <div class="modal-content2">
-    <mat-toolbar color="primary">
-      <button mat-icon-button mat-dialog-close>
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-      <span>Новый заказ</span>
-    </mat-toolbar>
-    <mat-tab-group>
-      <mat-tab label="Доставка"></mat-tab>
-      <mat-tab label="Самовывоз"></mat-tab>
-    </mat-tab-group>
-    <div class="login-link">
-      <a href="#">Войти</a> в свой аккаунт и отобразить мои адреса доставки
-    </div>
-    <button mat-button>
-      <mat-icon>location_on</mat-icon> Определить местоположение
-    </button>
-    <form>
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Улица</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <div class="address-fields">
-        <mat-form-field appearance="outline">
-          <mat-label>Дом</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Корпус</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-      <div class="optional-fields">
-        <mat-form-field appearance="outline">
-          <mat-label>Подъезд</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Квартира</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Домофон</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Этаж</mat-label>
-          <input matInput>
-        </mat-form-field>
-      </div>
-      <div class="action-buttons">
-        <button mat-raised-button color="primary">Добавить</button>
-        <button mat-button color="accent">Очистить</button>
-      </div>
-    </form>
-    </div>
-  </div>
- -->
+}
+</div>

@@ -1,0 +1,56 @@
+@if (isDesktop){
+
+<div class="modal-content">
+    <div class="modal-box">
+        <span class="close" (click)="showModal('')">&times;</span>
+        <div class="vertical-content">
+            <div class="text-content">
+                <span class="title">{{"Как вы хотите получить заказ?"}}</span>
+                <div>
+                    <div class="text">{{"Доставим до Вас или заберите у нас."}}</div>
+                    <div class="text">{{"Зарегистрируйтесь у нас на сайте и мы запомним Ваш адрес доставки, для Вашего удобства."}}</div>
+                </div>    
+            </div>
+            <div class="buttons-container">
+              <button mat-flat-button extended (click)="showModal('modal2')" class="button delivery-button">{{"Доставка"}} </button>
+              <button mat-flat-button extended (click)="showModal('modal2')" class="button">{{"Самовывоз"}}</button>
+            </div>
+            <div class="center">
+                <span class="link text">{{"Войти"}}</span> 
+                <span class="text"> {{" в свой аккаунт"}} </span> 
+            </div>
+        </div>
+    </div>
+
+  <ng-content></ng-content>
+</div>
+
+} @else {
+      
+    <div class="modal-content form-modal-content">
+      <div class="modal-box">
+        <span class="close" (click)="showModal('')">&times;</span>
+        <div class="vertical-content">
+          <div class="text-content">
+            <span class="title">Как вы хотите получить заказ?</span>
+            <div>
+              <div class="text">Доставим до Вас или заберите у нас.</div>
+              <div class="text">Зарегистрируйтесь у нас на сайте и мы запомним Ваш адрес доставки, для Вашего удобства.</div>
+            </div>    
+          </div>
+          <div class="buttons-container">
+            <button mat-flat-button extended (click)="showModal('modal2')" class="button delivery-button">Доставка</button>
+            <button mat-flat-button extended (click)="showModal('modal2')" class="button">Самовывоз</button>
+          </div>
+          <div class="center">
+            <span class="link text">{{"Войти"}}</span> 
+            <span class="text">{{" в свой аккаунт"}}</span> 
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- <p>You have received a file called "cat-picture.jpeg".</p>
+    
+      <button mat-raised-button (click)="openBottomSheet()">Open file</button> -->
+  }
