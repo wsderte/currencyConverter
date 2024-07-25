@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
@@ -18,11 +17,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
-import {
-    MatBottomSheetModule,
-  } from '@angular/material/bottom-sheet';
-  import {MatListModule} from '@angular/material/list';
-
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({ 
     declarations: [
@@ -45,9 +41,7 @@ import {
         MatTabsModule,
         MatDialogModule,
         MatToolbarModule,
-        // MatBottomSheet,
         MatBottomSheetModule,
-        // MatBottomSheetRef,
         MatListModule
     ],
     bootstrap: [AppComponent], 
@@ -65,9 +59,7 @@ import {
         MatTabsModule,
         MatDialogModule,
         MatToolbarModule,
-        // MatBottomSheet,
         MatBottomSheetModule,
-        // MatBottomSheetRef,
         MatListModule,
     ],
     providers: [GetCurrencyService, provideHttpClient(withInterceptorsFromDi())] })

@@ -6,7 +6,12 @@ import {map} from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatBottomSheet,
   MatBottomSheetModule,MatBottomSheetRef } from '@angular/material/bottom-sheet';
-
+  
+// import Map from 'ol/Map';
+// import View from 'ol/View';
+// import TileLayer from 'ol/layer/Tile';
+// import { OSM } from 'ol/source';
+// import 'ol/ol.css';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -28,6 +33,7 @@ export class FormComponent {
     isPickup: boolean = false;
     lat:number | undefined;
     lng:number | undefined;
+
 
     readonly hideRequiredControl = new FormControl(false);
     readonly floatLabelControl = new FormControl('auto' as FloatLabelType);
@@ -52,6 +58,8 @@ export class FormComponent {
         });
       }
     }
+
+   
 
 
     onContainerClick(event: MouseEvent) {
