@@ -26,6 +26,9 @@ export class FormComponent {
     isDesktop:boolean;
     currentModal: string | null = null;
     isPickup: boolean = false;
+    lat:number | undefined;
+    lng:number | undefined;
+
     readonly hideRequiredControl = new FormControl(false);
     readonly floatLabelControl = new FormControl('auto' as FloatLabelType);
     readonly options = inject(FormBuilder).group({
@@ -40,6 +43,39 @@ export class FormComponent {
 
     constructor( private _bottomSheet: MatBottomSheet){
       this.isDesktop = window.innerWidth >=768
+      
+      if (navigator){
+        navigator.geolocation.getCurrentPosition( pos => {
+            this.lng = +pos.coords.longitude;
+            this.lat = +pos.coords.latitude;
+            console.log(this.lng, this.lat, "COORDINATES")
+        });
+      }
+    }
+
+
+    onContainerClick(event: MouseEvent) {
+      if (!(event.target as HTMLElement).closest('.modal-content') && !(event.target as HTMLElement).closest('.modal-content2'))  {
+        this.currentModal = '';
+      }
+    }
+
+    getPosition(): Promise<any>{
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resp => {
+          resolve({
+              lng: resp.coords.longitude,
+              lat: resp.coords.latitude
+            })},
+        err => {  reject(err)  }
+      )});
+    }
+
+    onClickSendLocation():void {
+      this.getPosition().then(pos=>
+        {
+           console.log(`Positon: ${pos.lng} ${pos.lat}`);
+        });
     }
 
     openBottomSheet(): void {
