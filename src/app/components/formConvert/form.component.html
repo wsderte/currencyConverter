@@ -314,3 +314,60 @@
 </div>
 }
 </div>
+
+
+
+
+
+
+
+
+<div class="modal" *ngIf="currentModal === 'modal3'">
+  @if (isDesktop){
+
+    <div class="modal-content modal3">
+        <div class="modal-box">
+          <div class="icon-box">
+            <mat-icon class="back" (click)="showModal('modal1')" aria-hidden="false" aria-label="filter icon">arrow_back_ios</mat-icon>
+            <span class="close" (click)="showModal('')">&times;</span>
+          </div>
+
+          <div class="vertical-content">
+            <div class="text-content">
+              <span class="popup-title-modal3">{{"Точка самовывоза"}}</span>
+            </div>
+
+            <div class="chosen-location-box chosen-location-border">
+              <mat-icon class="back" (click)="showModal('modal1')" aria-hidden="false" aria-label="filter icon">location_on</mat-icon>
+              <div class="chosen-location-flex">
+                <span class="choosen-location-title">{{"Комсомольский пр. 30"}}</span>
+                <span class="choosen-location-date">{{"Пн-Вс: 9:00 - 23:00"}}</span>
+              </div>
+            </div>
+
+            <div class="chosen-location-box chosen-location-border">
+              <mat-icon class="back choosen-location-map-black-color" (click)="showModal('modal1')" aria-hidden="false" aria-label="filter icon">location_on</mat-icon>
+              <div class="chosen-location-flex">
+                <span class="choosen-location-title choosen-location-map-black-color">{{"Показать на карте"}}</span>
+              </div>
+            </div>
+
+            <div class="buttons-container">
+              <button mat-flat-button extended (click)="showModal('modal4')" class="button ">{{"Перейти к оформлению"}}</button>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+  } 
+  @else {
+
+  }
+
+</div>
+
+
+
+
+
+
