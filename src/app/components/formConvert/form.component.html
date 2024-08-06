@@ -390,8 +390,6 @@
           </div>
           <div>
             <h1>Map</h1>
-            <h1>{{lat}}</h1>
-            <h1>{{lng}}</h1>
             <div style="height: 500px">
               <!-- <aol-map>
                   <aol-view [zoom]="8">
@@ -405,6 +403,7 @@
                   <aol-control-zoomslider></aol-control-zoomslider>
                   <aol-control-zoom></aol-control-zoom>
               </aol-map> -->
+
               <aol-map [width]="'100%'" [height]="'100%'">
                 <aol-view [zoom]="zoom" [center]="center" [maxZoom]="maxZoom" [minZoom]="minZoom">
                   <aol-coordinate [x]="center[0]" [y]="center[1]" [srid]="'EPSG:4326'"></aol-coordinate>
@@ -414,9 +413,10 @@
                 </aol-layer-tile>
                 <aol-layer-vector>
                   <aol-source-vector>
+                    <ng-container *ngFor="let marker of markers">
                     <aol-feature>
                       <aol-geometry-point>
-                        <aol-coordinate [x]="markerX" [y]="markerY" [srid]="'EPSG:4326'"></aol-coordinate>
+                        <aol-coordinate [x]="marker.markerX" [y]="marker.markerY" [srid]="'EPSG:4326'"></aol-coordinate>
                       </aol-geometry-point>
                       <aol-style>
                         <aol-style-icon
@@ -428,6 +428,7 @@
                         </aol-style-icon>
                       </aol-style>
                     </aol-feature>
+                  </ng-container>
                   </aol-source-vector>
                 </aol-layer-vector>
                 <aol-interaction-default></aol-interaction-default>
@@ -436,9 +437,27 @@
                 <aol-control-zoom></aol-control-zoom>
               </aol-map>
 
+              <!-- <ng-container *ngFor="let marker of markers">
+                <aol-feature>
+                  <aol-geometry-point>
+                    <aol-coordinate [x]="marker.longitude" [y]="marker.latitude" [srid]="'EPSG:4326'"></aol-coordinate>
+                  </aol-geometry-point>
+                  <aol-style>
+                    <aol-style-icon
+                      [src]="'assets/marker.png'"
+                      [anchor]="[0.5, 1]"
+                      [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                      [scale]="0.05"
+                      [anchorOrigin]="'top-left'">
+                    </aol-style-icon>
+                  </aol-style>
+                </aol-feature>
+              </ng-container> -->
+
+
             </div>
 
-
+            <!-- <button mat-flat-button extended  (click)="onClickSendLocation()"> SEND LOC</button> -->
             <!-- <div id="map" class="map"></div> -->
             <!-- <div style="height: 500px">
               <div id="map" style="width: 400px; height: 500px;"></div>

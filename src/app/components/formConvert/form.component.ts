@@ -43,9 +43,18 @@ export class FormComponent {
     lng:number = 0;
 
     zoom: number = 8;
-    center: [number, number] = [31, 51]; // Default center
-    markerX: number = 31;
-    markerY: number = 51;
+    center: [number, number] = [30, 30]; 
+    markers: any[] = [
+      {
+        markerX:  30.4676864, 
+        markerY:  50.6036224,
+      }, {
+        markerX:  31,
+        markerY:  51,
+      }]; 
+
+    userCurentLng: number = 31;
+    userCurentLat: number = 51;
     maxZoom: number = 17;
     minZoom: number = 7;
 
@@ -78,79 +87,81 @@ export class FormComponent {
         navigator.geolocation.getCurrentPosition(position => {
           this.center = [position.coords.longitude, position.coords.latitude];
           this.zoom = 15; // Adjust zoom level for current position
-          this.markerX = position.coords.longitude;
-          this.markerY = position.coords.latitude;
+          console.log(position.coords.longitude, position.coords.latitude, "COORDINATES FROM NG ON INIT")
+          this.userCurentLng = position.coords.longitude;
+          this.userCurentLat = position.coords.latitude;
+          this.center = [this.userCurentLng, this.userCurentLat]
         });
       } else {
         console.error('Geolocation is not supported by this browser.');
       }
 
 
-      this.map = new Map({
-      layers: [
-        new TileLayer({
-          source: new OSM(),
-        }),
-      ],
-      target: 'map',
-      view: new View({ 
-        center: fromLonLat([3, 3]),
-        zoom: 8,maxZoom: 14, 
-      }),
-    });
+    //   this.map = new Map({
+    //   layers: [
+    //     new TileLayer({
+    //       source: new OSM(),
+    //     }),
+    //   ],
+    //   target: 'map',
+    //   view: new View({ 
+    //     center: fromLonLat([3, 3]),
+    //     zoom: 8,maxZoom: 14, 
+    //   }),
+    // });
 
-    this.setUserLocation();
+    // this.setUserLocation();
    }
 
 
-   private setUserLocation(): void {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const userCoordinates = fromLonLat([position.coords.longitude, position.coords.latitude]);
-        console.log(userCoordinates, "USER COORD")
-        this.map.getView().setCenter(userCoordinates);
-        this.map.getView().setZoom(12);
+  //  private setUserLocation(): void {
+  //   if ('geolocation' in navigator) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       const userCoordinates = fromLonLat([position.coords.longitude, position.coords.latitude]);
+  //       console.log(userCoordinates, "USER COORD")
+  //       this.map.getView().setCenter(userCoordinates);
+  //       this.map.getView().setZoom(12);
 
-        this.addUserLocationMarker(userCoordinates);
-      }, (error) => {
-        console.error('Geolocation error:', error);
-      });
-    } else {
-      console.error('Geolocation not available');
-    }
-  }
+  //       this.addUserLocationMarker(userCoordinates);
+  //     }, (error) => {
+  //       console.error('Geolocation error:', error);
+  //     });
+  //   } else {
+  //     console.error('Geolocation not available');
+  //   }
+  // }
 
-  private addUserLocationMarker(coordinates: any): void {
-    const userLocationFeature = new Feature({
-      geometry: new Point(coordinates)
-    });
+  // private addUserLocationMarker(coordinates: any): void {
+  //   const userLocationFeature = new Feature({
+  //     geometry: new Point(coordinates)
+  //   });
 
-    userLocationFeature.setStyle(new Style({
-      image: new Icon({
-        src: 'https://openlayers.org/en/latest/examples/data/icon.png',
-        anchor: [0.5, 1]
-      })
-    }));
+  //   userLocationFeature.setStyle(new Style({
+  //     image: new Icon({
+  //       src: 'https://openlayers.org/en/latest/examples/data/icon.png',
+  //       anchor: [0.5, 1]
+  //     })
+  //   }));
 
-    const vectorSource = new VectorSource({
-      features: [userLocationFeature]
-    });
+  //   const vectorSource = new VectorSource({
+  //     features: [userLocationFeature]
+  //   });
 
-    this.userLocationLayer = new VectorLayer({
-      source: vectorSource
-    });
+  //   this.userLocationLayer = new VectorLayer({
+  //     source: vectorSource
+  //   });
 
-    this.map.addLayer(this.userLocationLayer);
-  }
+  //   this.map.addLayer(this.userLocationLayer);
+  // }
 
 
 
-    onZoomIn() {
-      const view = this.map.getView();
-      const zoom: number = view.getZoom() || 1;
-      view.setZoom(zoom - 1);
-      console.log("ZOOM IN")
-    }
+    // onZoomIn() {
+    //   const view = this.map.getView();
+    //   const zoom: number = view.getZoom() || 1;
+    //   view.setZoom(zoom - 1);
+    //   console.log("ZOOM IN")
+    // }
 
     onContainerClick(event: MouseEvent) {
       if (!(event.target as HTMLElement).closest('.modal-content') && !(event.target as HTMLElement).closest('.modal-content2'))  {
