@@ -4,14 +4,20 @@ import {toSignal} from '@angular/core/rxjs-interop';
 import { FloatLabelType } from '@angular/material/form-field';
 import {map} from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatBottomSheet,
-  MatBottomSheetModule,MatBottomSheetRef } from '@angular/material/bottom-sheet';
-  
-// import Map from 'ol/Map';
-// import View from 'ol/View';
-// import TileLayer from 'ol/layer/Tile';
-// import { OSM } from 'ol/source';
-// import 'ol/ol.css';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet'; 
+
+import Map from 'ol/Map.js';
+import View from 'ol/View.js';
+import OSM from 'ol/source/OSM.js';
+import TileLayer from 'ol/layer/Tile.js';
+import { fromLonLat } from 'ol/proj';
+import Geolocation from 'ol/Geolocation';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import { Icon, Style } from 'ol/style';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -27,13 +33,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class FormComponent {
     // @Input() isOpen = true;
+    public map!: Map;
+    userLocationLayer!: VectorLayer;
     isOpen:boolean = true;
     isDesktop:boolean;
     currentModal: string | null = null;
     isPickup: boolean = false;
-    lat:number | undefined;
-    lng:number | undefined;
+    lat:number = 0;
+    lng:number = 0;
 
+    zoom: number = 8;
+    center: [number, number] = [31, 51]; // Default center
+    markerX: number = 31;
+    markerY: number = 51;
+    maxZoom: number = 17;
+    minZoom: number = 7;
 
     readonly hideRequiredControl = new FormControl(false);
     readonly floatLabelControl = new FormControl('auto' as FloatLabelType);
@@ -59,8 +73,84 @@ export class FormComponent {
       }
     }
 
-   
+    ngOnInit(): void {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.center = [position.coords.longitude, position.coords.latitude];
+          this.zoom = 15; // Adjust zoom level for current position
+          this.markerX = position.coords.longitude;
+          this.markerY = position.coords.latitude;
+        });
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+      }
 
+
+      this.map = new Map({
+      layers: [
+        new TileLayer({
+          source: new OSM(),
+        }),
+      ],
+      target: 'map',
+      view: new View({ 
+        center: fromLonLat([3, 3]),
+        zoom: 8,maxZoom: 14, 
+      }),
+    });
+
+    this.setUserLocation();
+   }
+
+
+   private setUserLocation(): void {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const userCoordinates = fromLonLat([position.coords.longitude, position.coords.latitude]);
+        console.log(userCoordinates, "USER COORD")
+        this.map.getView().setCenter(userCoordinates);
+        this.map.getView().setZoom(12);
+
+        this.addUserLocationMarker(userCoordinates);
+      }, (error) => {
+        console.error('Geolocation error:', error);
+      });
+    } else {
+      console.error('Geolocation not available');
+    }
+  }
+
+  private addUserLocationMarker(coordinates: any): void {
+    const userLocationFeature = new Feature({
+      geometry: new Point(coordinates)
+    });
+
+    userLocationFeature.setStyle(new Style({
+      image: new Icon({
+        src: 'https://openlayers.org/en/latest/examples/data/icon.png',
+        anchor: [0.5, 1]
+      })
+    }));
+
+    const vectorSource = new VectorSource({
+      features: [userLocationFeature]
+    });
+
+    this.userLocationLayer = new VectorLayer({
+      source: vectorSource
+    });
+
+    this.map.addLayer(this.userLocationLayer);
+  }
+
+
+
+    onZoomIn() {
+      const view = this.map.getView();
+      const zoom: number = view.getZoom() || 1;
+      view.setZoom(zoom - 1);
+      console.log("ZOOM IN")
+    }
 
     onContainerClick(event: MouseEvent) {
       if (!(event.target as HTMLElement).closest('.modal-content') && !(event.target as HTMLElement).closest('.modal-content2'))  {

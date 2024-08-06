@@ -389,8 +389,61 @@
             <span class="popup-title-modal3">{{"Уточните ваш адрес"}}</span>
           </div>
           <div>
-            <h1>MAP</h1>
-            <div id="map" class="map"></div>
+            <h1>Map</h1>
+            <h1>{{lat}}</h1>
+            <h1>{{lng}}</h1>
+            <div style="height: 500px">
+              <!-- <aol-map>
+                  <aol-view [zoom]="8">
+                    <aol-coordinate [x]="31" [y]="51" [srid]="'EPSG:4326'"></aol-coordinate>
+                  </aol-view>
+                  <aol-layer-tile>
+                    <aol-source-osm></aol-source-osm>
+                  </aol-layer-tile>
+                  <aol-interaction-default></aol-interaction-default>
+                  <aol-control-scaleline></aol-control-scaleline>
+                  <aol-control-zoomslider></aol-control-zoomslider>
+                  <aol-control-zoom></aol-control-zoom>
+              </aol-map> -->
+              <aol-map [width]="'100%'" [height]="'100%'">
+                <aol-view [zoom]="zoom" [center]="center" [maxZoom]="maxZoom" [minZoom]="minZoom">
+                  <aol-coordinate [x]="center[0]" [y]="center[1]" [srid]="'EPSG:4326'"></aol-coordinate>
+                </aol-view>
+                <aol-layer-tile>
+                  <aol-source-osm></aol-source-osm>
+                </aol-layer-tile>
+                <aol-layer-vector>
+                  <aol-source-vector>
+                    <aol-feature>
+                      <aol-geometry-point>
+                        <aol-coordinate [x]="markerX" [y]="markerY" [srid]="'EPSG:4326'"></aol-coordinate>
+                      </aol-geometry-point>
+                      <aol-style>
+                        <aol-style-icon
+                          [src]="'assets/marker.png'"
+                          [anchor]="[0.5, 1]"
+                          [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+                          [scale]="0.05"
+                          [anchorOrigin]="'top-left'">
+                        </aol-style-icon>
+                      </aol-style>
+                    </aol-feature>
+                  </aol-source-vector>
+                </aol-layer-vector>
+                <aol-interaction-default></aol-interaction-default>
+                <aol-control-scaleline></aol-control-scaleline>
+                <aol-control-zoomslider></aol-control-zoomslider>
+                <aol-control-zoom></aol-control-zoom>
+              </aol-map>
+
+            </div>
+
+
+            <!-- <div id="map" class="map"></div> -->
+            <!-- <div style="height: 500px">
+              <div id="map" style="width: 400px; height: 500px;"></div>
+            </div>
+            <button (click)="onZoomIn()">Zoom out</button> -->
           </div>
 
           <div class="vertical-content">

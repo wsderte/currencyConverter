@@ -19,6 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import {MatListModule} from '@angular/material/list';
+import {AngularOpenlayersModule} from "ng-openlayers";
+
 
 @NgModule({ 
     declarations: [
@@ -61,6 +63,7 @@ import {MatListModule} from '@angular/material/list';
         MatToolbarModule,
         MatBottomSheetModule,
         MatListModule,
+        AngularOpenlayersModule,
     ],
     providers: [GetCurrencyService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
